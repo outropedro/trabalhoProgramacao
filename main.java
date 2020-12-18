@@ -5,8 +5,8 @@ public class main{
         //CHAMAR OS METODOS DAS QUESTÕES DENTRO DA MAIN, E CRIAR AS FUNÇÕES SEPARAS. EX: roboVigia();
 
         //roboVigia();
-        smurfsDaSegundona();
-
+        //smurfsDaSegundona();
+        semRepeticao();
     }
 
     public static void roboVigia(){
@@ -62,27 +62,59 @@ public class main{
     }
 
     public static void semRepeticao(){
-        int tamVetor, min, max,aux =0, cont=0;
-
+            /* desmembra = num%10
+            num/=10
+            desmabra = num%10 */
+        
+        int max, min, tVet1, cont;
         Scanner teclado = new Scanner(System.in);
 
-        System.out.print("Insira o numero minimo desejado: ");
+        System.out.print("Insira o numero maximo de digitos que seu numero maximo tem: ");
+        int qtdMax= teclado.nextInt();
+        System.out.print("insrira o numero minimo que você deseja obter: ");
         min = teclado.nextInt();
-
-        System.out.print("Insira o numero maximo desejado: ");
+        System.out.print("insrira o numero maximo que você deseja obter: ");
         max = teclado.nextInt();
-
-        tamVetor = max-min;
-        int vetor[] = new int[tamVetor];
         
+        tVet1=max-min;
 
-        for (int i=0; i<tamVetor; i++){
-            //IMPLEMENTAR UMA FORMA QUE O VETOR RECEBA NUMERO POR NUMERO DESMEBRADO E EXECUTE A COMPARAÇÃO SE TEM ALGUM IGUAL, DEPOIS ZERAR VETOR, DEPOIS COLOCAR IF 
-            // E ELSE PARA CONTAR QUANTAS NUMEROS SEM OS DIGITOS REPETIDOS TEM DENTRO DO INTERVALO
+        int operacao[] = new int[qtdMax];
+        int numEntre[]=new int[tVet1];
+        int vetAux[]=new int[tVet1];
+
+        cont =0;
+
+        //VER  O QUE ESTÁ ACONTECENDO QUE ESTÁ DANDO ERRO
+
+        for(int i=min; i<tVet1; i++){
+            numEntre[i] = i;
+            vetAux[i] = numEntre[i];
+        }
+        for(int j=0; j<tVet1; j++){
+            for(int k=0; k<tVet1; k++){
+                operacao[j]=vetAux[j]%10;
+                vetAux[j]/=10;
+    
+                if(j==0 || k==0){
+                    if(operacao[j] == operacao[j+k]){
+                        cont++;
+                    }
+                }
+                else if(j==(tVet1-1)){
+                    if(operacao[j] == operacao[j-k]){
+                        cont++;
+                    }
+                }
+    
+                if(operacao[j] == operacao[j-k] && operacao[j] == operacao[j+k]){
+                    cont++;
+                }
+            }
+            
         }
         
-
-
+        System.out.print(cont);
+            
     }
 
 
