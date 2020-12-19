@@ -10,6 +10,56 @@ public class main{
     }
 
     public static void roboVigia(){
+        int estacao, numComandos, qtdNinho;
+
+ 
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.print("Insira a quantidade de ninhos que serão vigiados: ");
+        qtdNinho = teclado.nextInt();
+        System.out.print("Insira a quantidade de comandos que você irá inserir(comando deve ser 1 e -1): ");
+        numComandos = teclado.nextInt();
+
+        int comandos[] = new int[numComandos];
+        int ninhos[] = new int[qtdNinho];
+        int ninhosInvertido[] = new int[qtdNinho];
+
+
+        estacao=0;
+        //GERA VETOR COM NUMEROS DOS NINHOS;
+        for(int i=0; i<qtdNinho; i++){
+            ninhos[i] = i+1;
+        }       
+
+        //INVERTE VETOR COM NUMERO DOS NINHOS
+        for(int inv=qtdNinho-1; inv>=0; inv--){
+            for(int o=0; o<qtdNinho; o++){
+                ninhosInvertido[o] = ninhos[inv]; 
+            }
+        }
+
+        for(int j=0; j<numComandos; j++){
+            System.out.print("Insira o " + j+1 + "º comando");
+            comandos[j] = teclado.nextInt();
+        }
+        //VERIFICA COMANDO, COLOCA NA ESTAÇÃO   
+
+        for(int c=1; c<=numComandos;c++){
+            if(comandos[c] ==1){
+                estacao +=1;
+            }
+            else if(comandos[c] == -1){
+                estacao-=1;
+                if(estacao <= -1){
+                    //SE COMANDO FOR -1, E ESTAÇÃO DER -1, ESTAÇÃO VAI RECEBER O VALOR DA ULTIMA ESTAÇÃO;
+                    for(int j = 0; j<qtdNinho; j++){
+                        estacao = ninhosInvertido[j];
+                    }
+                }
+            }
+        }
+        System.out.print(estacao);
 
 
     }
