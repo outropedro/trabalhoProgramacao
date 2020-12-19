@@ -66,7 +66,7 @@ public class main{
             num/=10
             desmabra = num%10 */
         
-        int max, min, tVet1, cont;
+        int max, min, tVet1, cont, cont2, qtdNun=0;
         Scanner teclado = new Scanner(System.in);
 
         System.out.print("Insira o numero maximo de digitos que seu numero maximo tem: ");
@@ -83,9 +83,9 @@ public class main{
         int vetAux[]=new int[tVet1];
 
         cont =0;
+        cont2=0;
 
-        //VER  O QUE ESTÁ ACONTECENDO QUE ESTÁ DANDO ERRO
-
+        //PREENCHE VETOR 
         for(int i=min; i<tVet1; i++){
             numEntre[i] = i;
             vetAux[i] = numEntre[i];
@@ -95,7 +95,7 @@ public class main{
                 operacao[j]=vetAux[j]%10;
                 vetAux[j]/=10;
     
-                if(j==0 || k==0){
+                if(j==0 && k==0){
                     if(operacao[j] == operacao[j+k]){
                         cont++;
                     }
@@ -105,15 +105,28 @@ public class main{
                         cont++;
                     }
                 }
-    
-                if(operacao[j] == operacao[j-k] && operacao[j] == operacao[j+k]){
-                    cont++;
+                if(j!=0){
+
+                    //VERIFICA SE TEM NUMEROS IGUAIS
+                    if(operacao[j] == operacao[j-k] && operacao[j] == operacao[j+k]){
+                        cont++;
+                    }
+                    else{
+                        cont2++;
+                    }
                 }
             }
             
         }
-        
-        System.out.print(cont);
+        if(cont <2){
+            qtdNun = cont2-cont;
+        }
+        else if(0<qtdNun) {
+            System.out.print("0");
+        }
+        else{
+            System.out.print(cont);
+        }
             
     }
 
