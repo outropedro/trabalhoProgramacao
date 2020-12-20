@@ -6,7 +6,8 @@ public class main{
 
         //roboVigia();
         //smurfsDaSegundona();
-        semRepeticao();
+        //semRepeticao();
+        passaBolinha();
     }
 
     public static void roboVigia(){
@@ -178,6 +179,64 @@ public class main{
             System.out.print(cont);
         }
             
+    }
+
+    public static void passaBolinha(){
+        int aux=0,cont=0, linha, coluna;
+
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.print("Insira quantidade de linhas e colunas que terá o jogo: ");
+        final int padrao = teclado.nextInt();
+
+        int tabuleiro[][]= new int[padrao][padrao];
+        
+
+        for(int i=0; i<padrao; i++){
+            for(int j=0; j<padrao; j++){
+               System.out.print("Insira o numero da camisa do aluno que está na linha " +i+1+ " coluna " + j+1 +"(1 a 9)");
+                tabuleiro[i][j]=teclado.nextInt();
+            }
+        }
+
+        //PEGA LINHA E COLUNA INICIAL
+        System.out.print("Insira qual linha você irá colocar a bolinha");
+        linha=teclado.nextInt();
+        System.out.print("Insira qual coluna você irá colocar a bolinha");
+        coluna=teclado.nextInt();
+
+        //ATRIBUI NUMERO DA CAMISA NA VAR
+        for(int i=0; i<padrao; i++){
+            for(int j=0; j<padrao; j++){
+                if(i==linha && j==coluna){
+                    aux=tabuleiro[i][j];
+                }
+            }
+        }
+        //COMPARA E CONTA QUANTAS CAMISAS LEVANTARAM A BANDEIRA
+        for(int i=linha; i<padrao; i++){
+            for(int j=coluna; j<padrao; j++){
+                if(i==0 && j==0){
+                    if(aux >= tabuleiro[i+1][j+1] &&  aux >= tabuleiro[i+1][j+1] ){
+                        cont++;
+                    }
+
+                }
+                else if(i==padrao-1 && j == padrao-1){
+                    if(aux >= tabuleiro[i+1][j+1] &&  aux >= tabuleiro[i+1][j+1] ){
+                        cont++;
+                    }
+                }
+
+                if(aux >= tabuleiro[i+1][(j+1)-1]){
+                    cont++;
+                }
+
+            }
+        }
+        //IMPRIME RESULTADO
+        System.out.print(cont);
+
     }
 
 
